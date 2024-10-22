@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import "./App.css";
-import { NavBar } from "./components/NavBar.jsx";
-import { Body } from "./components/Body.jsx";
+import { NavBar } from "./NavBar.jsx";
+import { Body } from "./Body.jsx";
 
 function App() {
   const [login, setLogin] = useState(false);
