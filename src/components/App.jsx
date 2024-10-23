@@ -3,6 +3,8 @@ import { useEffect } from "react";
 import "./App.css";
 import { NavBar } from "./NavBar.jsx";
 import { Body } from "./Body.jsx";
+import { Footer } from "./Footer.jsx";
+import { LoginPage } from "./LoginPage.jsx";
 
 function App() {
   const [login, setLogin] = useState(false);
@@ -11,7 +13,8 @@ function App() {
   return (
     <>
       <NavBar />
-      <Body login={login} setLogin={setLogin} />
+      <LoginPage />
+      <Footer />
     </>
   );
 }
