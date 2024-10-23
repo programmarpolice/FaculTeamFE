@@ -1,15 +1,35 @@
 //Refer to the Notes at the bottom of page for explanations to the code
 import React from "react";
-//import { Link } from "react-router-dom"; // to navigate to other pages (if necessary)
+import { useNavigate } from "react-router-dom";
 import "./Footer.css";
 
 export function Footer() {
+  const navigate = useNavigate();
+
   return (
     <footer>
       <div className="footContent">
-        <p> FaculTeam</p>
+        <h1>FaculTeam</h1>
         <nav>
-          <ul className="footerLinks"></ul>
+          <ul className="footerLinks">
+            <li>
+              <button onClick={() => navigate("/help")}>Help</button>
+            </li>
+            <li>
+              <button onClick={() => navigate("/social-media")}>
+                Social Media
+              </button>
+            </li>
+            <li>
+              <button onClick={() => navigate("/support")}>Support</button>
+            </li>
+            <li>
+              <button onClick={() => navigate("/faqs")}>FAQs</button>
+            </li>
+            <li>
+              <button onClick={() => navigate("/about-us")}>About Us</button>
+            </li>
+          </ul>
         </nav>
       </div>
     </footer>
@@ -21,21 +41,5 @@ export function Footer() {
 // import css file(Line 4) in order to apply styling
 //created an unordered list of links (<nav> tag is used to wrap the list of links.)
 //each link is contained in a <li> element
-// <Link to> allows us to create a link to the file path of choice
 
-//LINKS:
-/**     <li>
-              <Link to="/about">About Us</Link>
-            </li>
-            <li>
-              <Link to="/help">Help</Link>
-            </li>
-            <li>
-              <Link to="/support">Support</Link>
-            </li>
-            <li>
-              <Link to="/faqs">FAQs</Link>
-            </li>
-            <li>
-              <Link to="/social-media">Social Media</Link>
-            </li> */
+
