@@ -1,11 +1,11 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-//import { logout } from "../features/account/authSlice";
+import { logout } from "../features/account/authSlice";
 /** Main site navigation */
 function Navbar() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const token = useSelector((state) => state.auth.token);
+  // const token = useSelector((state) => state.auth.token);
   const attemptLogout = () => {
     dispatch(logout());
     navigate("/");
@@ -13,28 +13,23 @@ function Navbar() {
   return (
     <nav>
       <NavLink to="/" className="logo">
-        <span>Book Buddy</span>
+        <span> Welcome To FacuLink </span>
       </NavLink>
       <menu>
         <li>
           <NavLink to="/departments">Departments</NavLink>
         </li>
-        {token ? (
-          <>
-            <li>
-              <NavLink to="/professors">Professors</NavLink>
-            </li>
-            <li>
-              <a href="#" onClick={attemptLogout}>
-                Log Out
-              </a>
-            </li>
-          </>
-        ) : (
-          <li>
-            <NavLink to="/login">Log In</NavLink>
-          </li>
-        )}
+        <li>
+          <NavLink to="/professors">Professors</NavLink>
+        </li>
+        <li>
+          <a href="#" onClick={attemptLogout}>
+            Log Out
+          </a>
+        </li>
+        <li>
+          <NavLink to="/login">Log In</NavLink>
+        </li>
       </menu>
     </nav>
   );

@@ -1,21 +1,22 @@
-import api from "./api";
+import api from "../../store/api";
+
 const departmentApi = api.injectEndpoints({
   endpoints: (build) => ({
     getDepartments: build.query({
-      query: () => "departments",
-      transformResponse: (response) => response.data,
-      transformErrorResponse: (response) => response.data.error,
+      query: () => "/departments",
+      transformResponse: (response) => response,
+      // transformErrorResponse: (response) => response.data.error,
       providesTags: ["department"],
     }),
     getDepartment: build.query({
-      query: (id) => "departments/" + id,
-      transformResponse: (response) => response.data,
-      transformErrorResponse: (response) => response.data.error,
+      query: (id) => "/departments/" + id,
+      transformResponse: (response) => response.departments,
+      // transformErrorResponse: (response) => response.data.error,
       providesTags: ["department"],
     }),
     updateDepartment: build.mutation({
       query: (department) => ({
-        url: "departments",
+        url: "/departments",
         method: "PUT",
         body: department, //body links to the req.body of the department.js file
       }),
@@ -23,7 +24,7 @@ const departmentApi = api.injectEndpoints({
     }),
     addDepartment: build.mutation({
       query: (department) => ({
-        url: "departments",
+        url: "/departments",
         method: "POST",
         body: department,
       }),

@@ -1,4 +1,4 @@
-import api from "./api";
+import api from "../../store/api";
 const professorApi = api.injectEndpoints({
   endpoints: (build) => ({
     getProfessors: build.query({

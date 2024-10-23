@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { useLoginMutation, useRegisterMutation } from "../Auth/authSlice";
+import { useLoginMutation, useRegisterMutation } from "./authSlice";
 import { useNavigate } from "react-router-dom";
 
 /** AuthForm allows a user to either login or register for an account. */
-export function LoginPage() {
+function AuthForm() {
   const navigate = useNavigate();
 
   // Handles swapping between login and register
@@ -64,3 +64,5 @@ export function LoginPage() {
     </>
   );
 }
+
+export default AuthForm;

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import api from "../store/api";
+import api from "../../store/api";
 /**
  * These auth endpoints have to be injected _before_ the slice is defined
  * because the slice will attach extra reducers to these endpoints.

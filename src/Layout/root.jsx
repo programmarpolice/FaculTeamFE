@@ -1,8 +1,8 @@
-import { Navbar } from "../store/Navbar";
+import Navbar from "./Navbar";
 import { Outlet } from "react-router-dom";
 
 /** Root layout component */
-export function Root() {
+function Root() {
   return (
     <>
       <Navbar />
@@ -10,3 +10,5 @@ export function Root() {
     </>
   );
 }
+
+export default Root;

@@ -1,11 +1,12 @@
+import { useState } from "react";
 import { useGetProfessorsQuery } from "./professorSlice";
 import { useNavigate } from "react-router-dom"; //exported as an object(not default)
 import { ProfessorDetails } from "./ProfessorDetails";
 
-import { NavBar } from "./NavBar";
-import { Footer } from "./Footer";
+// import { Navbar } from "../../Layout/Navbar";
+// import { Footer } from "../../components/Footer";
 
-export default function ProfessorList() {
+function ProfessorList() {
   const navigate = useNavigate();
   const { data: professors = [], isLoading, error } = useGetProfessorsQuery();
 
@@ -22,8 +23,7 @@ export default function ProfessorList() {
   }
 
   return (
-    <>
-      <NavBar />
+    <main>
       <ul>
         {professors.map((prof) => (
           <li
@@ -36,7 +36,7 @@ export default function ProfessorList() {
           </li>
         ))}
       </ul>
-      <Footer />
-    </>
+    </main>
   );
 }
+export default ProfessorList;

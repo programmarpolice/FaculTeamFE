@@ -1,9 +1,5 @@
 import { useGetDepartmentsQuery } from "./departmentSlice";
 import { useNavigate } from "react-router-dom"; //exported as an object(not default)
-import { DepartmentDetails } from "./DepartmentDetails";
-
-import { NavBar } from "./NavBar";
-import { Footer } from "./Footer";
 
 export default function DepartmentList() {
   const navigate = useNavigate();
@@ -23,20 +19,25 @@ export default function DepartmentList() {
 
   return (
     <>
-      <NavBar />
-      <ul>
-        {departments.map((dept) => (
-          <li
-            onClick={() => {
-              navigate(`/Department-details/${dept.id}`);
-            }}
-            key={dept.id}
-          >
-            <DepartmentDetails department={dept} />
+      <h1> Our Departments</h1>
+      <form>
+        <input
+          type="text"
+          placeholder="Search..."
+          onChange={(e) => setFilter(e.target.value)}
+        />
+      </form>
+      <ul className="dept-list">
+        {departments.map((d) => (
+          <li key={d.id}>
+            <h2>
+              {d.name} #{d.id}
+            </h2>
+            <address>{d.address}</address>
+            {/* <Link to={`/departments/${d.id}`}>See details</Link> */}
           </li>
         ))}
       </ul>
-      <Footer />
     </>
   );
 }
