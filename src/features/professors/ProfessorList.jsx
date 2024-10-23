@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useGetProfessorsQuery } from "./professorSlice";
 import { useNavigate } from "react-router-dom"; //exported as an object(not default)
 import { ProfessorDetails } from "./ProfessorDetails";
@@ -19,24 +18,31 @@ function ProfessorList() {
   }
 
   if (!professors.length) {
-    return <p>There are no professors in this department.</p>;
+    return <p>There are no professors.</p>;
   }
 
   return (
-    <main>
-      <ul>
+    <>
+      <h1> Our Faculty</h1>
+      <form>
+        <input
+          type="text"
+          placeholder="Search..."
+          onChange={(e) => setFilter(e.target.value)}
+        />
+      </form>
+      <ul className="prof-list">
         {professors.map((prof) => (
-          <li
-            onClick={() => {
-              navigate(`/Professor-details/${prof.id}`);
-            }}
-            key={prof.id}
-          >
-            <ProfessorDetails professor={prof} />
+          <li key={prof.id}>
+            <h2>{prof.name}</h2>
+            <img src={prof.profile}></img>
+            <p> About: {prof.bio} </p>
+            <p> Email: {prof.email} </p>
+            <p> Phone: {prof.phone} </p>
           </li>
         ))}
       </ul>
-    </main>
+    </>
   );
 }
 export default ProfessorList;
