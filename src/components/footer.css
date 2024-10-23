@@ -1,7 +1,7 @@
 footer {
     background-color: #333;  /* Dark gray background */
     color: #fff;             /* White text */
-    padding: 10px 0;        /* Vertical padding */
+    padding: 20px 0;        /* Increased vertical padding */
     text-align: center;      /* Center-align text */
 }
 
@@ -22,11 +22,20 @@ footer {
     margin: 0 15px;         /* Space between links */
 }
 
-.footerLinks a {            /* a(anchor element) is refering to the children(<Link>) of the footerLinks list items(<li>)*/
-    color: #fff;            /* White text for links */
-    text-decoration: none;   /* Remove underline */
+.footerLinks button {
+    background: none;        /* No background */
+    color: #fff;            /* White text for buttons */
+    border: none;           /* No border */
+    font: inherit;          /* Inherit font styles */
+    cursor: pointer;        /* Pointer cursor on hover */
+    padding: 5px 10px;     /* Padding for buttons */
+    transition: color 0.3s; /* Smooth color transition */
 }
 
-.footerLinks a:hover {
-     color: #ffcc00;         /* Change link color on hover (e.g., yellow) */
+.footerLinks button:hover {
+    color: #ffcc00;         /* Change text color on hover (e.g., yellow) */
+}
+
+.footerLinks button:focus {
+    outline: none;          /* Remove default focus outline */
 }
