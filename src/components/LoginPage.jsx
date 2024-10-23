@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useLoginMutation, useRegisterMutation } from "../auth/authSlice";
+import { useLoginMutation, useRegisterMutation } from "../Auth/authSlice";
 import { useNavigate } from "react-router-dom";
 
 /** AuthForm allows a user to either login or register for an account. */
@@ -18,7 +18,7 @@ export function LoginPage() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  /** const attemptAuth = async (evt) => {
+  const attemptAuth = async (evt) => {
     evt.preventDefault();
 
     const authMethod = isLogin ? login : register;
@@ -30,7 +30,7 @@ export function LoginPage() {
     } catch (error) {
       console.error(error);
     }
-  }; */
+  };
 
   return (
     <>
