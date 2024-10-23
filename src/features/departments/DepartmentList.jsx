@@ -30,14 +30,16 @@ export default function DepartmentList() {
       <ul className="dept-list">
         {departments.map((d) => (
           <li key={d.id}>
-            <h2>
-              {d.name} #{d.id}
-            </h2>
-            <address>{d.address}</address>
-            {/* <Link to={`/departments/${d.id}`}>See details</Link> */}
+            <h2>{d.name}</h2>
+            <p> About: {d.description} </p>
+            <p> Phone: {d.phone} </p>
+            <p> Building # {d.address} </p>
+            <img src={d.Banner}></img>
           </li>
         ))}
       </ul>
     </>
   );
 }
+
+// #{d.id} might need to add this next to d.name

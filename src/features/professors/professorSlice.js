@@ -1,21 +1,22 @@
 import api from "../../store/api";
+
 const professorApi = api.injectEndpoints({
   endpoints: (build) => ({
     getProfessors: build.query({
-      query: () => "professors",
-      transformResponse: (response) => response.data,
-      transformErrorResponse: (response) => response.data.error,
+      query: () => "/professors",
+      transformResponse: (response) => response,
+      // transformErrorResponse: (response) => response.data.error,
       providesTags: ["professor"],
     }),
     getProfessor: build.query({
-      query: (id) => "professors/" + id,
+      query: (id) => "/professors/" + id,
       transformResponse: (response) => response.data,
       transformErrorResponse: (response) => response.data.error,
       providesTags: ["professor"],
     }),
     updateProfessor: build.mutation({
       query: (professor) => ({
-        url: "professors",
+        url: "/professors",
         method: "PUT",
         body: professor,
       }),
