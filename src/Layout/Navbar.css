@@ -1,0 +1,83 @@
+:root {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #5d5a5a;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+header {
+  background: rgb(51, 153, 110);
+}
+.nav {
+  display: grid;
+  grid-template-columns: repeat(1fr, 4);
+  background: rgb(51, 153, 110);
+}
+
+.Navbar1 {
+  border: 2px solid rgb(51, 153, 110);
+  padding: 0.5em;
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.Navbar2 {
+  border: 2px solid rgb(51, 153, 110);
+  padding: 0.5em;
+  grid-column: 2;
+  grid-row: 1;
+}
+.Navbar3 {
+  border: 2px solid rgb(51, 153, 110);
+  padding: 0.5em;
+  grid-column: 3;
+  grid-row: 1;
+}
+.Navbar4 {
+  border: 2px solid rgb(51, 153, 110);
+  padding: 0.5em;
+  grid-column: 3;
+  grid-row: 1;
+}
+
+a {
+  font-weight: 500;
+  color: #dedee4;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button:hover {
+  border-color: #64ffe3;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
