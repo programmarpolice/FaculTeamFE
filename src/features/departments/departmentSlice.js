@@ -46,4 +46,5 @@ export const {
   useGetDepartmentQuery,
   useAddDepartmentMutation,
   useDeleteDepartmentMutation,
+  useUpdateDepartmentMutation,
 } = departmentApi;
