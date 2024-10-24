@@ -15,10 +15,10 @@ const authApi = api.injectEndpoints({
       invalidatesTags: ["User"],
     }),
     login: build.mutation({
-      query: (username) => ({
+      query: (credentials) => ({
         url: "/login",
         method: "POST",
-        body: username,
+        body: credentials,
       }),
     }),
   }),

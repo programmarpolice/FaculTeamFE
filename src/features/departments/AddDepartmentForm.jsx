@@ -47,7 +47,7 @@ export function AddDepartmentForm() {
             setFormData({ ...formData, description: e.target.value })
           }
         />
-      </label>{" "}
+      </label>
       <br />
       <label>
         Banner Picture
