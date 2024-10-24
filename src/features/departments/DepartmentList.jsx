@@ -48,7 +48,9 @@ export default function DepartmentList() {
                     {d.name} #{d.id}
                   </h2>
                   <DeleteDepartmentForm id={d.id} />
-                  <address>{d.address}</address>
+                  <address>Address: {d.address}</address>
+                  <phone>Phone #: {d.phone}</phone>
+                  <br />
                   <img src={d.Banner} className="image" />
                 </li>
               ))}
