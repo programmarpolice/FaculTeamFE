@@ -9,6 +9,7 @@ export function UpdateDepartmentForm() {
     Banner: "",
     address: "",
     phone: "",
+    profIds: [],
   });
 
   const navigate = useNavigate();
@@ -18,15 +19,26 @@ export function UpdateDepartmentForm() {
     try {
       const department = await updateDepartment({
         ...formData,
+        profIds: formData.profIds,
       }).unwrap();
-      navigate(`/departments/${department.id}`);
+      navigate("/departments");
     } catch (e) {
       console.error(e);
     }
   }
   return (
     <form onSubmit={postDepartment} className="add-update-form">
-      <h2>Update a Department</h2>
+      <h2>Update a Department</h2>{" "}
+      <label>
+        Name
+        <input
+          type="text"
+          name="name"
+          value={formData.name}
+          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+        />
+      </label>{" "}
+      <br />
       <label>
         Name
         <input
@@ -77,6 +89,20 @@ export function UpdateDepartmentForm() {
           value={formData.address}
           onChange={(e) =>
             setFormData({ ...formData, address: e.target.value })
+          }
+        />
+      </label>{" "}
+      <br />
+      <label>
+        Professors
+        <input
+          name="profIds"
+          value={formData.profIds}
+          onChange={(e) =>
+            setFormData({
+              ...formData,
+              profIds: e.target.value.split(",").map(Number),
+            })
           }
         />
       </label>{" "}
