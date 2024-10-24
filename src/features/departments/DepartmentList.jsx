@@ -47,7 +47,7 @@ export default function DepartmentList() {
                   <h2>
                     {d.name} #{d.id}
                   </h2>
-                  <DeleteDepartmentForm id={d.id} />
+
                   <address>Address: {d.address}</address>
                   <address>Phone #: {d.phone}</address>
                   <br />
@@ -56,9 +56,9 @@ export default function DepartmentList() {
               ))}
             </th>
             <th scope="col">
-              <AddDepartmentForm />
+              {token && <AddDepartmentForm />}
 
-              <UpdateDepartmentForm />
+              {token && <UpdateDepartmentForm />}
             </th>
           </tr>
         </tbody>
