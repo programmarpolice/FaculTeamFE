@@ -16,7 +16,7 @@ const professorApi = api.injectEndpoints({
     }),
     updateProfessor: build.mutation({
       query: (professor) => ({
-        url: "/professors",
+        url: `/professors/${professor.id}`, // the id from the professor object
         method: "PUT",
         body: professor,
       }),
@@ -24,7 +24,7 @@ const professorApi = api.injectEndpoints({
     }),
     addProfessor: build.mutation({
       query: (professor) => ({
-        url: "professors",
+        url: "/professors",
         method: "POST",
         body: professor,
       }),
@@ -46,4 +46,5 @@ export const {
   useGetProfessorQuery,
   useAddProfessorMutation,
   useDeleteProfessorMutation,
+  useUpdateProfessorMutation,
 } = professorApi;

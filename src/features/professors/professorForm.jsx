@@ -1,31 +1,69 @@
-import { useNavigate } from "react-router-dom";
-import { useAddProfessorMutation } from "./professorSlice";
-import { useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import {
+  useAddProfessorMutation,
+  useGetProfessorQuery,
+  useUpdateProfessorMutation,
+} from "./professorSlice";
+import { useEffect, useState } from "react";
 
 export default function professorForm() {
+  const { id } = useParams(); // Get the professor id from the URL
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     profile: "",
     phone: "",
     bio: "",
-    DepartmentId: "",
+    DepartmentId: null, //has to start as null due to the schema defining it as either a int or null(int?)
   });
 
-  const navigate = useNavigate();
+  const { data: professor } = useGetProfessorQuery(id, {
+    skip: !id, // Skip fetching if no id
+  });
+
   const [addProfessor] = useAddProfessorMutation();
-  async function postProfessor(event) {
+  const [updateProfessor] = useUpdateProfessorMutation();
+
+  useEffect(() => {
+    if (professor) {
+      setFormData({
+        name: professor.name,
+        email: professor.email,
+        profile: professor.profile,
+        phone: professor.phone,
+        bio: professor.bio,
+        DepartmentId: professor.DepartmentId,
+      });
+    }
+  }, [professor]);
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const professor = await addProfessor(formData).unwrap();
-      navigate(`/professors/${professor.id}`); // Redirect to the new professor's details
+      // Ensuring DepartmentId is an integer or null
+      const submissionData = {
+        ...formData,
+        DepartmentId: formData.DepartmentId
+          ? parseInt(formData.DepartmentId)
+          : null,
+      };
+      if (id) {
+        // If editing, update the existing professor
+        await updateProfessor({ ...submissionData, id }).unwrap();
+      } else {
+        // If adding a new professor
+        await addProfessor(submissionData).unwrap();
+      }
+      navigate("/professors");
     } catch (e) {
-      console.error(e);
+      console.error("Failed to save professor: ", e);
     }
-  }
+  };
+
   return (
-    <form onSubmit={postProfessor}>
-      <h2>Add a Professor</h2>
+    <form onSubmit={handleSubmit}>
+      <h2>{id ? "Edit Professor" : "Add a Professor"}</h2>
       <label>
         Name
         <input
@@ -38,7 +76,7 @@ export default function professorForm() {
       <label>
         Email
         <input
-          type="text"
+          type="email" // Changed to email type for validation
           name="email"
           value={formData.email}
           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -74,17 +112,17 @@ export default function professorForm() {
         />
       </label>
       <label>
-        Department
+        Department ID
         <input
-          type="text"
-          name="department"
-          value={formData.department}
+          type="number"
+          name="DepartmentId"
+          value={formData.DepartmentId || ""}
           onChange={(e) =>
-            setFormData({ ...formData, department: e.target.value })
+            setFormData({ ...formData, DepartmentId: e.target.value })
           }
         />
       </label>
-      <button>Add Professor</button>
+      <button>{id ? "Update" : "Add"} Professor</button>
     </form>
   );
 }
