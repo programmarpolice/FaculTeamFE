@@ -15,8 +15,8 @@ const departmentApi = api.injectEndpoints({
       providesTags: ["department"],
     }),
     updateDepartment: build.mutation({
-      query: (department) => ({
-        url: "/departments",
+      query: ({ id, ...department }) => ({
+        url: "/departments/" + id,
         method: "PUT",
         body: department, //body links to the req.body of the department.js file
       }),
