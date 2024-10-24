@@ -39,19 +39,18 @@ function AuthForm() {
         <label>
           Email
           <input
-            type="email"
+            name="email"
             value={email}
             onChange={(evt) => setEmail(evt.target.value)}
-            autoComplete="email"
           />
         </label>
         <label>
           Password
           <input
+            name="password"
             type="password"
             value={password}
             onChange={(evt) => setPassword(evt.target.value)}
-            autoComplete="current-password"
           />
         </label>
         <button>{authAction}</button>
@@ -59,8 +58,8 @@ function AuthForm() {
       <a href="#" onClick={() => setIsLogin(!isLogin)}>
         {altCopy}
       </a>
-      {isLogin && loginError && <p role="alert">{loginError}</p>}
-      {!isLogin && registerError && <p role="alert">{registerError}</p>}
+      {isLogin && loginError && <p role="alert">{loginError.message}</p>}
+      {!isLogin && registerError && <p role="alert">{registerError.message}</p>}
     </>
   );
 }

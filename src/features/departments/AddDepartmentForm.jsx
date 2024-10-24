@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import { usAddDepartmentMutation } from "./departmentSlice";
+import { useAddDepartmentMutation } from "./departmentSlice";
 import { useState } from "react";
 
-export default function departmentform() {
+export function AddDepartmentForm() {
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -12,7 +12,7 @@ export default function departmentform() {
   });
 
   const navigate = useNavigate();
-  const [addDepartment] = usAddDepartmentMutation();
+  const [addDepartment] = useAddDepartmentMutation();
   async function postDepartment(event) {
     event.preventDefault();
     try {
@@ -25,7 +25,7 @@ export default function departmentform() {
     }
   }
   return (
-    <form onSubmit={postDepartment}>
+    <form onSubmit={postDepartment} className="add-update-form">
       <h2>Add a Department</h2>
       <label>
         Name
@@ -36,6 +36,7 @@ export default function departmentform() {
           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
         />
       </label>
+      <br />
       <label>
         Description
         <input
@@ -46,7 +47,8 @@ export default function departmentform() {
             setFormData({ ...formData, description: e.target.value })
           }
         />
-      </label>
+      </label>{" "}
+      <br />
       <label>
         Banner Picture
         <input
@@ -55,7 +57,8 @@ export default function departmentform() {
           value={formData.Banner}
           onChange={(e) => setFormData({ ...formData, Banner: e.target.value })}
         />
-      </label>
+      </label>{" "}
+      <br />
       <label>
         Phone number
         <input
@@ -64,7 +67,8 @@ export default function departmentform() {
           value={formData.phone}
           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
         />
-      </label>
+      </label>{" "}
+      <br />
       <label>
         Address
         <input
@@ -75,8 +79,9 @@ export default function departmentform() {
             setFormData({ ...formData, address: e.target.value })
           }
         />
-      </label>
-      <button>Add Department</button>
+      </label>{" "}
+      <br />
+      <button>Add Department</button> <br />
     </form>
   );
 }

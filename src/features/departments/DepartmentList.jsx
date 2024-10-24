@@ -1,9 +1,19 @@
 import { useGetDepartmentsQuery } from "./departmentSlice";
+import { useGetDepartmentQuery } from "./departmentSlice";
+import { AddDepartmentForm } from "./AddDepartmentForm";
+import { UpdateDepartmentForm } from "./UpdateDepartmentForm.jsx";
+import { DeleteDepartmentForm } from "./DeleteDepartment.jsx";
+import { useSelector } from "react-redux";
+import { selectToken } from "../account/authSlice";
 import { useNavigate } from "react-router-dom"; //exported as an object(not default)
+import { useState } from "react";
+import "./Department.css";
 
 export default function DepartmentList() {
+  const token = useSelector(selectToken);
   const navigate = useNavigate();
   const { data: departments = [], isLoading, error } = useGetDepartmentsQuery();
+  const [selectedDepartmentId, setSelectedDepartmentId] = useState("");
 
   if (isLoading) {
     return <p>Loading Departments...</p>;
@@ -19,25 +29,38 @@ export default function DepartmentList() {
 
   return (
     <>
-      <h1> Our Departments</h1>
-      <form>
-        <input
-          type="text"
-          placeholder="Search..."
-          onChange={(e) => setFilter(e.target.value)}
-        />
-      </form>
-      <ul className="dept-list">
-        {departments.map((d) => (
-          <li key={d.id}>
-            <h2>{d.name}</h2>
-            <p> About: {d.description} </p>
-            <p> Phone: {d.phone} </p>
-            <p> Building # {d.address} </p>
-            <img src={d.Banner}></img>
-          </li>
-        ))}
-      </ul>
+      <table>
+        <tbody>
+          <tr>
+            <th scope="col">
+              <h1> Our Departments</h1>
+              <form>
+                <input
+                  type="text"
+                  placeholder="Search..."
+                  onChange={(e) => setFilter(e.target.value)}
+                />
+              </form>
+
+              {departments.map((d) => (
+                <li key={d.id} className="blue-green">
+                  <h2>
+                    {d.name} #{d.id}
+                  </h2>
+                  <DeleteDepartmentForm id={d.id} />
+                  <address>{d.address}</address>
+                  <img src={d.Banner} className="image" />
+                </li>
+              ))}
+            </th>
+            <th scope="col">
+              <AddDepartmentForm />
+
+              <UpdateDepartmentForm />
+            </th>
+          </tr>
+        </tbody>
+      </table>
     </>
   );
 }

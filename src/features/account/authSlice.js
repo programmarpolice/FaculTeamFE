@@ -10,7 +10,7 @@ const authApi = api.injectEndpoints({
       query: (user) => ({
         url: "/register",
         method: "POST",
-        body: { user },
+        body: user,
       }),
       transformResponse: (response) => response.data,
       transformErrorResponse: (response) => response.data.error,
@@ -19,7 +19,7 @@ const authApi = api.injectEndpoints({
       query: (user) => ({
         url: "/login",
         method: "POST",
-        body: { user },
+        body: user,
       }),
       transformResponse: (response) => response.data,
       transformErrorResponse: (response) => response.data.error,
