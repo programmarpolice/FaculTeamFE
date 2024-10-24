@@ -17,10 +17,8 @@ export default function professorForm() {
   async function postProfessor(event) {
     event.preventDefault();
     try {
-      const professor = await addProfessor({
-        ...formData,
-      }).unwrap();
-      navigate(`/professors/${professor.id}`);
+      const professor = await addProfessor(formData).unwrap();
+      navigate(`/professors/${professor.id}`); // Redirect to the new professor's details
     } catch (e) {
       console.error(e);
     }
