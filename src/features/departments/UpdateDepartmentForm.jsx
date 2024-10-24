@@ -30,12 +30,11 @@ export function UpdateDepartmentForm() {
     <form onSubmit={postDepartment} className="add-update-form">
       <h2>Update a Department</h2>{" "}
       <label>
-        Name
+        id
         <input
-          type="text"
-          name="name"
-          value={formData.name}
-          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+          name="id"
+          value={formData.id}
+          onChange={(e) => setFormData({ ...formData, id: e.target.value })}
         />
       </label>{" "}
       <br />
