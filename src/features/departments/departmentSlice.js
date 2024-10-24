@@ -28,6 +28,7 @@ const departmentApi = api.injectEndpoints({
         method: "POST",
         body: department,
       }),
+      transformResponse: (response) => response,
       invalidatesTags: ["department"],
     }),
     deleteDepartment: build.mutation({
