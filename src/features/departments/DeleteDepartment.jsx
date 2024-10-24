@@ -16,7 +16,7 @@ export function DeleteDepartmentForm(id) {
     }
   }
   return (
-    <button onClick={postDepartment} class="delete-button">
+    <button onClick={postDepartment} className="delete-button">
       <label>Delete this Department</label>
     </button>
   );
