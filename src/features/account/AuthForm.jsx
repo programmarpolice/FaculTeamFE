@@ -16,13 +16,13 @@ function AuthForm() {
   const [login, { error: loginError }] = useLoginMutation();
   const [register, { error: registerError }] = useRegisterMutation();
 
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const attemptAuth = async (evt) => {
     evt.preventDefault();
 
     const authMethod = isLogin ? login : register;
-    const credentials = { email, password };
+    const credentials = { username, password };
 
     try {
       await authMethod(credentials).unwrap();
@@ -37,11 +37,11 @@ function AuthForm() {
       <h1>{authAction}</h1>
       <form onSubmit={attemptAuth}>
         <label>
-          Email
+          Username
           <input
-            name="email"
-            value={email}
-            onChange={(evt) => setEmail(evt.target.value)}
+            name="username"
+            value={username}
+            onChange={(evt) => setUsername(evt.target.value)}
           />
         </label>
         <label>

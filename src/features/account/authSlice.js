@@ -7,19 +7,18 @@ import api from "../../store/api";
 const authApi = api.injectEndpoints({
   endpoints: (build) => ({
     register: build.mutation({
-      query: (user) => ({
+      query: (credentials) => ({
         url: "/register",
         method: "POST",
-        body: user,
+        body: credentials,
       }),
-      transformResponse: (response) => response.data,
-      transformErrorResponse: (response) => response.data.error,
+      invalidatesTags: ["User"],
     }),
     login: build.mutation({
-      query: (user) => ({
+      query: (username) => ({
         url: "/login",
         method: "POST",
-        body: user,
+        body: username,
       }),
       transformResponse: (response) => response.data,
       transformErrorResponse: (response) => response.data.error,
